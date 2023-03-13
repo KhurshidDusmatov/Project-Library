@@ -19,7 +19,11 @@ public class Profile {
     private String phone;
     private LocalDateTime createdDate;
     private Boolean visible;
-    private Role role;
+    private String role;
 
-
+    public Profile(String name, String surname, String phone) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+    }
 }

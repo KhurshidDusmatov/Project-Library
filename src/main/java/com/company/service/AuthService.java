@@ -30,9 +30,9 @@ public class AuthService {
         }
 
 //        ComponentContainer.currentProfile = profile;
-        if (profile.getRole().equals(Role.ADMIN)) {
+        if (profile.getRole().equals("ADMIN")) {
             adminController.start();
-        } else if (profile.getRole().equals(Role.USER)) {
+        } else if (profile.getRole().equals("USER")) {
             profileController.start();
         } else {
             System.out.println("You don't have any role.");

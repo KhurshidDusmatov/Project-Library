@@ -37,7 +37,7 @@ public class DataBase {
                 "             surname varchar(20) not null,\n" +
                 "             phone varchar(12) unique, \n" +
                 "             created_date timestamp not null default now(),\n" +
-                "             visible varchar(20) not null, \n" +
+                "             visible boolean not null, \n" +
                 "             role varchar not null );";
 
 

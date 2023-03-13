@@ -1,53 +1,51 @@
 package com.company.repository;
 
 import com.company.db.DataBase;
+import com.company.dto.Book;
 import com.company.dto.Profile;
 import com.company.enums.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 @Repository
 public class ProfileRepository {
 
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
     public Profile getProfileByPhone(String phone) {
-        Connection connection = null;
-        try {
-            connection = DataBase.getConnection();
-            Statement statement = connection.createStatement();
-            String sql = String.format("Select  * from profile where phone= '%s' ;", phone);
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                Profile profile = new Profile();
-                profile.setId(resultSet.getInt("id"));
-                profile.setName(resultSet.getString("name"));
-                profile.setSurname(resultSet.getString("surname"));
-                profile.setPhone(resultSet.getString("phone"));
-                profile.setCreatedDate(resultSet.getTimestamp("created_date").toLocalDateTime());
-                profile.setRole(Role.valueOf(resultSet.getString("role")));
-                profile.setVisible(Boolean.valueOf(resultSet.getString("visible")));
-                return profile;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.exit(-1);
-        } finally {
-
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.exit(-1);
-            }
+        String sql = "select * from profile where phone = '" + phone+"'";
+        List<Profile> profiles = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Profile.class));
+        if (profiles.size()>0){
+            return profiles.get(0);
         }
         return null;
+    }
+    public List<Profile> getProfileList(){
+        String sql = "select * from profile";
+        List<Profile> profiles  = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Profile.class));
+        if (profiles.size()>0){
+            return profiles;
+        }
+        return null;
+    }
+
+    public int countByPhone(String phone){
+        return jdbcTemplate.queryForObject("select count(*) from profile where phone = '"+phone+"'", Integer.class);
+    }
+
+    public int addProfile(Profile profile){
+        String sql = "insert into profile(name,surname,phone,created_date, role) values ('%s','%s','%s', now(), '%s')";
+        sql = String.format(sql, profile.getName(), profile.getSurname(), profile.getPhone(), Role.USER);
+        int n = jdbcTemplate.update(sql);
+        return n;
     }
 }
