@@ -25,4 +25,5 @@ public class Book {
         this.amount = amount;
         this.visible = visible;
     }
+
 }

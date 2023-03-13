@@ -19,7 +19,11 @@ public class BookService {
             System.out.println("Books not found");
             return;
         }
-        bookList.forEach(System.out::println);
+        for (Book book : bookList) {
+            if (book.getVisible()){
+                System.out.println(book);
+            }
+        }
     }
 
     public void addBook(Book book){
@@ -41,14 +45,24 @@ public class BookService {
             System.out.println("Book's amount invalid");
             return;
         }
-
-        boolean isAdded = bookRepository.addBook(book);
-        if (isAdded){
+        int n = bookRepository.addBook(book);
+        if (n==1){
             System.out.println("Book successfully added ! ");
         }else {
             System.out.println("Book not added ( ");
         }
+    }
 
-
+    public void deleteBook(String id) {
+        if(!id.matches("\\d+")){
+            System.out.println("Id is invalid");
+            return;
+        }
+        int n = bookRepository.deleteBook(id);
+        if (n==1){
+            System.out.println("Book successfully deleted");
+        }else{
+            System.out.println("Book not deleted");
+        }
     }
 }

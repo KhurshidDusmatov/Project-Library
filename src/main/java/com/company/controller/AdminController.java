@@ -23,7 +23,7 @@ public class AdminController {
                     addBook();
                     break;
                 case 3:
-
+                    deleteBook();
                     break;
                 case 4:
 
@@ -82,6 +82,12 @@ public class AdminController {
         Book book = new Book(title, author, year, amount, true);
         bookService.addBook(book);
 
+    }
+
+    private void deleteBook(){
+        System.out.print("Enter book's id to delete : ");
+        String id  = ScannerUtil.SCANNER_STR.nextLine();
+        bookService.deleteBook(id);
     }
 
 }

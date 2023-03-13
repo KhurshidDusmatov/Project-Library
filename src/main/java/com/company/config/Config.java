@@ -1,18 +1,32 @@
 package com.company.config;
 
-import com.company.controller.AuthController;
-import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-@Component
+import javax.sql.DataSource;
+
+@Configuration
 @ComponentScan(basePackages = "com.company")
 public class Config {
 
-//    @Bean
-//    public AuthController initDataBase(){
-//        AuthController authController = new AuthController();
-//        return authController;
-//    }
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/Jdbs_db");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("dx721");
+        return dataSource;
+    }
+
+    @Bean
+    public JdbcTemplate getTemplate() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(dataSource());
+        return jdbcTemplate;
+    }
+
 }

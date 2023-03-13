@@ -28,7 +28,7 @@ public class DataBase {
                 "             author varchar(50) not null,\n" +
                 "             publish_year integer not null, \n" +
                 "             amount integer default 0,\n" +
-                "             visible varchar(20) not null ); ";
+                "             visible boolean not null ); ";
 
 
         String profile = "create table if not exists profile ( \n" +
