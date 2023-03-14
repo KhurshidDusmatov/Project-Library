@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TakenBook {
+    private Integer id;
     private String title;
     private String author;
     private LocalDateTime created_date;
+    private String status;
 }

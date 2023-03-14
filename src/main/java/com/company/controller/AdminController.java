@@ -5,6 +5,7 @@ import com.company.dto.Profile;
 import com.company.dto.StudentBook;
 import com.company.service.BookService;
 import com.company.service.ProfileService;
+import com.company.service.StudentBookService;
 import com.company.utill.ScannerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ public class AdminController {
     private BookService bookService;
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private StudentBookService studentBookService;
 
     public void start() {
         boolean b = true;
@@ -41,12 +44,9 @@ public class AdminController {
                     deleteProfile();
                     break;
                 case 7:
-
+                    getTakenBooks();
                     break;
                 case 8:
-
-                    break;
-                case 9:
 
                     break;
                 case 0:
@@ -58,6 +58,8 @@ public class AdminController {
             }
         }
     }
+
+
     public void menu() {
         System.out.println("1. Book List");
         System.out.println("2. Add Book ");
@@ -110,5 +112,8 @@ public class AdminController {
         System.out.print("Enter book's id to delete : ");
         String id = ScannerUtil.SCANNER_STR.nextLine();
         profileService.deleteProfile(id);
+    }
+    private void getTakenBooks() {
+        studentBookService.getTakenBooks();
     }
 }

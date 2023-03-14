@@ -74,7 +74,7 @@ public class ProfileController {
     private void returnBook(){
         System.out.print("Enter book's id to return : ");
         String id = ScannerUtil.SCANNER_STR.nextLine();
-        bookService.returnBook(id);
+        studentBookService.returnBook(id);
     }
 
 }

@@ -88,11 +88,5 @@ public class BookService {
     }
 
 
-    public void returnBook(String id) {
-        if(!id.matches("\\d+")){
-            System.out.println("Id is invalid");
-            return;
-        }
 
-    }
 }
