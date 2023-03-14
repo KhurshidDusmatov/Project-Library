@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.company.service.BookService;
 import com.company.service.ProfileService;
+import com.company.service.StudentBookService;
 import com.company.utill.ScannerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ public class ProfileController {
     ProfileService profileService;
     @Autowired
     BookService bookService;
+    @Autowired
+    StudentBookService studentBookService;
     public void start() {
         boolean b = true;
         while (b) {
@@ -25,8 +28,10 @@ public class ProfileController {
                     takeBook();
                     break;
                 case 3:
+                    takenBook();
                     break;
                 case 4:
+                    returnBook();
                     break;
                 case 5:
                     break;
@@ -60,6 +65,16 @@ public class ProfileController {
         System.out.print("Enter book's id to take : ");
         String id = ScannerUtil.SCANNER_STR.nextLine();
         bookService.takeBook(id);
+    }
+    private void takenBook(){
+        System.out.println("Taken Books");
+        studentBookService.takenBooks();
+    }
+
+    private void returnBook(){
+        System.out.print("Enter book's id to return : ");
+        String id = ScannerUtil.SCANNER_STR.nextLine();
+        bookService.returnBook(id);
     }
 
 }

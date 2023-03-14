@@ -86,4 +86,13 @@ public class BookService {
             System.out.println("Error ( ");
         }
     }
+
+
+    public void returnBook(String id) {
+        if(!id.matches("\\d+")){
+            System.out.println("Id is invalid");
+            return;
+        }
+
+    }
 }
