@@ -47,7 +47,7 @@ public class AdminController {
                     getTakenBooks();
                     break;
                 case 8:
-
+                    showHistory();
                     break;
                 case 0:
                     b = false;
@@ -59,7 +59,6 @@ public class AdminController {
         }
     }
 
-
     public void menu() {
         System.out.println("1. Book List");
         System.out.println("2. Add Book ");
@@ -69,7 +68,6 @@ public class AdminController {
         System.out.println("6. Delete Student");
         System.out.println("7. Student Taken Book");
         System.out.println("8. Book Taken History");
-        System.out.println("9. Change Terminal Status");
         System.out.println("0. Log out");
     }
     private void bookList() {
@@ -115,5 +113,8 @@ public class AdminController {
     }
     private void getTakenBooks() {
         studentBookService.getTakenBooks();
+    }
+    private void showHistory() {
+       studentBookService.showHistory();
     }
 }

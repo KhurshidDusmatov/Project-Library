@@ -55,4 +55,13 @@ public class StudentBookService {
             }
         }
     }
+
+    public void showHistory() {
+        List<StudentBook> books = studentBookRepository.getAllStudentBooks();
+        if (Objects.equals(books, null)) {
+            System.out.println("History not found ");
+            return;
+        }
+        books.forEach(System.out::println);
+    }
 }
