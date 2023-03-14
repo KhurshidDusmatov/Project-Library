@@ -1,6 +1,8 @@
 package com.company.service;
 
+import com.company.container.ComponentContainer;
 import com.company.dto.Book;
+import com.company.dto.Profile;
 import com.company.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +39,7 @@ public class BookService {
             System.out.println("Author's name invalid");
             return;
         }
-        if (book.getPublishYear() > LocalDate.now().getYear() && 0 > book.getPublishYear()){
+        if (book.getPublishYear() > LocalDate.now().getYear() || 0 > book.getPublishYear()){
             System.out.println("Book's publish year invalid");
             return;
         }
@@ -63,6 +65,25 @@ public class BookService {
             System.out.println("Book successfully deleted");
         }else{
             System.out.println("Book not deleted");
+        }
+    }
+
+    public void takeBook(String id) {
+        if(!id.matches("\\d+")){
+            System.out.println("Id is invalid");
+            return;
+        }
+        Book book = bookRepository.getBookById(id);
+        if (!book.getVisible() || book.getAmount()<=0){
+            System.out.println("Book not found");
+            return;
+        }
+        Profile profile = ComponentContainer.currentProfile;
+        int n = bookRepository.takeBook(profile, book);
+        if (n==1){
+            System.out.println("Have a nice read ");
+        }else {
+            System.out.println("Error ( ");
         }
     }
 }

@@ -47,8 +47,8 @@ public class DataBase {
                 "   book_id integer not null,\n" +
                 "   created_date timestamp not null default now(),\n" +
                 "   status varchar(20) not null,\n" +
-                "   returned_date timestamp not null default now(),\n" +
-                "   duration varchar(12) );";
+                "   returned_date date, \n" +
+                "   duration integer default 5 );";
 
         execute(profile);
         execute(book);

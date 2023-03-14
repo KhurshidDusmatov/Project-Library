@@ -44,8 +44,14 @@ public class ProfileRepository {
 
     public int addProfile(Profile profile){
         String sql = "insert into profile(name,surname,phone,created_date, role) values ('%s','%s','%s', now(), '%s')";
-        sql = String.format(sql, profile.getName(), profile.getSurname(), profile.getPhone(), Role.USER);
+        sql = String.format(sql, profile.getName(), profile.getSurname(), profile.getPhone(), "USER");
         int n = jdbcTemplate.update(sql);
         return n;
+    }
+
+    public int deleteProfile(String id) {
+            String sql = "update profile set visible = false where id = "+ id;
+            int n = jdbcTemplate.update(sql);
+            return n;
     }
 }

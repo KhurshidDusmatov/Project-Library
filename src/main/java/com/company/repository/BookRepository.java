@@ -2,6 +2,7 @@ package com.company.repository;
 
 import com.company.db.DataBase;
 import com.company.dto.Book;
+import com.company.dto.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -42,4 +43,19 @@ public class BookRepository {
         return n;
     }
 
+    public Book getBookById(String id) {
+        String sql = "select * from book where id = '" +id+"'";
+        List<Book> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
+        if (books.size()>0){
+            return books.get(0);
+        }
+        return null;
+    }
+
+    public int takeBook(Profile profile, Book book) {
+        String sql = "insert into student_book(student_id,book_id, created_date, status ) values('%s','%s',now(),'%s')";
+        sql = String.format(sql, profile.getId(), book.getId(), "TAKEN");
+        int n = jdbcTemplate.update(sql);
+        return n;
+    }
 }

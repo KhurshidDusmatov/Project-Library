@@ -17,7 +17,7 @@ public class StudentBook {
     private Integer bookId;
     private LocalDateTime createdDate;
     private Status status;
-    private LocalDateTime returnedDate;
-    private String duration;
+    private LocalDate returnedDate;
+    private Integer duration;
 }
 

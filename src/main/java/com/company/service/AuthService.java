@@ -1,5 +1,6 @@
 package com.company.service;
 
+import com.company.container.ComponentContainer;
 import com.company.controller.AdminController;
 import com.company.controller.ProfileController;
 import com.company.dto.Profile;
@@ -20,7 +21,7 @@ public class AuthService {
     public void login(String phoneNumber){
         Profile profile = profileRepository.getProfileByPhone(phoneNumber);
         if (profile == null) {
-            System.out.println("Phone or Password incorrect");
+            System.out.println("Phone incorrect");
             return;
         }
         Boolean visible = profile.getVisible();
@@ -29,7 +30,7 @@ public class AuthService {
             return;
         }
 
-//        ComponentContainer.currentProfile = profile;
+        ComponentContainer.currentProfile = profile;
         if (profile.getRole().equals("ADMIN")) {
             adminController.start();
         } else if (profile.getRole().equals("USER")) {

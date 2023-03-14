@@ -38,7 +38,7 @@ public class AdminController {
                     addProfile();
                     break;
                 case 6:
-
+                    deleteProfile();
                     break;
                 case 7:
 
@@ -106,6 +106,9 @@ public class AdminController {
         Profile profile = new Profile(name, surname, phone);
         profileService.addProfile(profile);
     }
-
-
+    private void deleteProfile(){
+        System.out.print("Enter book's id to delete : ");
+        String id = ScannerUtil.SCANNER_STR.nextLine();
+        profileService.deleteProfile(id);
+    }
 }
