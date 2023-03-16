@@ -16,7 +16,7 @@ public class Config {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/Jdbs_db");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/hibernate_db_lesson");
         dataSource.setUsername("postgres");
         dataSource.setPassword("dx721");
         return dataSource;

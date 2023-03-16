@@ -11,7 +11,9 @@
         <property name="show_sql">true</property>
 
         <!-- MAPPINGS -->
-<!--        <mapping class=""/>-->
+        <mapping class="com.company.entity.Book"/>
+        <mapping class="com.company.entity.Profile"/>
+        <mapping class="com.company.entity.StudentBook"/>
     </session-factory>
 
 </hibernate-configuration>

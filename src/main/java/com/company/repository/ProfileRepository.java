@@ -43,8 +43,8 @@ public class ProfileRepository {
     }
 
     public int addProfile(Profile profile){
-        String sql = "insert into profile(name,surname,phone,created_date, role) values ('%s','%s','%s', now(), '%s')";
-        sql = String.format(sql, profile.getName(), profile.getSurname(), profile.getPhone(), "USER");
+        String sql = "insert into profile(name,surname,phone,created_date, visible, role) values ('%s','%s','%s', now(), '%s','%s')";
+        sql = String.format(sql, profile.getName(), profile.getSurname(), profile.getPhone(), true, "USER");
         int n = jdbcTemplate.update(sql);
         return n;
     }
