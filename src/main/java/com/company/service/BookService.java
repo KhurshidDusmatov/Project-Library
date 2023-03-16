@@ -67,26 +67,4 @@ public class BookService {
             System.out.println("Book not deleted");
         }
     }
-
-    public void takeBook(String id) {
-        if(!id.matches("\\d+")){
-            System.out.println("Id is invalid");
-            return;
-        }
-        Book book = bookRepository.getBookById(id);
-        if (!book.getVisible() || book.getAmount()<=0){
-            System.out.println("Book not found");
-            return;
-        }
-        Profile profile = ComponentContainer.currentProfile;
-        int n = bookRepository.takeBook(profile, book);
-        if (n==1){
-            System.out.println("Have a nice read ");
-        }else {
-            System.out.println("Error ( ");
-        }
-    }
-
-
-
 }

@@ -42,4 +42,8 @@ public class StudentBookRepository {
         }
         return null;
     }
+
+    public int countStudentBook(Integer studentId){
+        return jdbcTemplate.queryForObject("select count(*) from student_book where status = 'TAKEN' and student_id = "+studentId, Integer.class);
+    }
 }

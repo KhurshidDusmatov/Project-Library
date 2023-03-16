@@ -64,7 +64,7 @@ public class ProfileController {
     private void takeBook(){
         System.out.print("Enter book's id to take : ");
         String id = ScannerUtil.SCANNER_STR.nextLine();
-        bookService.takeBook(id);
+        studentBookService.takeBook(id);
     }
     private void takenBook(){
         System.out.println("Taken Books");
